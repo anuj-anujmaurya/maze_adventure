@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maze Adventure</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Maze Adventure</h1>
+    <div id="instructions">
+        <p>Navigate through the maze to reach the goal (🥅).</p>
+        <p>You can move using given buttons OR arrow keys on keyboard to play the game.</p>
+    </div>
+    <div class="table">
+        <table id="maze"></table>
+    </div>
+    <button onclick="move('up')">Up</button>
+    <button onclick="move('down')">Down</button>
+    <button onclick="move('left')">Left</button>
+    <button onclick="move('right')">Right</button>
+    <button onclick="refreshMaze()" class="btn-red">New Game</button>
+</body>
+<script src="/script.js"></script>
+</html>

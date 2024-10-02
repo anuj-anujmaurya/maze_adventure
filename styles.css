@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    color: #4CAF50;
+}
+
+#maze {
+    margin: 20px auto;        /* Centers the table horizontally */
+    border-collapse: collapse; /* Ensures borders are collapsed into single borders */
+    display: inline-table;     /* Allows centering to work properly */
+}
+
+td {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px; /* Centers text vertically */
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+table, td {
+    border: 3px solid black;
+}
+
+.player {
+    color: white;
+}
+
+.goal {
+    background-color: #44942c;
+    color: white;
+}
+
+.obstacle {
+    background-color: transparent;
+    color: white;
+    font-size : 30px;
+    overflow: hidden;
+}
+
+.player, .goal {
+    font-size: 30px;
+}
+
+button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+.btn-red {
+    background-color: rgb(255, 103, 103);
+}
+
+.btn-red:hover {
+    background-color: #45a049;
+}
+
+#instructions {
+    margin: 20px 0;
+    font-size: 18px;
+    color: #555;
+}
