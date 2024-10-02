@@ -36,7 +36,7 @@ function updateMaze() {
                 cell.innerHTML = '🥅';
             } else if (maze[y][x] === 'X') {
                 cell.classList.add('obstacle');
-                cell.innerHTML = '👻';
+                cell.innerHTML = '💀';
             } else {
                 cell.innerHTML = '';
             }
@@ -46,7 +46,7 @@ function updateMaze() {
     }
 }
 
-const successSound = new Audio('/assets/success.mp3');
+const successSound = new Audio('assets/yay.mp3');
 // move the player in the specified direction
 function move(direction) {
     if (isValidMove(playerPos, direction, maze)) {

@@ -84,10 +84,6 @@ button:hover {
     background-color: rgb(255, 103, 103);
 }
 
-.btn-red:hover {
-    background-color: #45a049;
-}
-
 #instructions {
     margin: 20px 0;
     font-size: 18px;
@@ -103,4 +99,5 @@ canvas {
     margin: 0;
     position: absolute;
     left:0;
+    z-index: -1;
 }
