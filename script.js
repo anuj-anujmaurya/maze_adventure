@@ -1,12 +1,17 @@
 const WIDTH = 5;
 const HEIGHT = 5;
 
-// Initial maze rendering
+// game state variables
+let maze = [];
+let playerPos = new Position(0, 0);
+
+// initial maze rendering
 document.addEventListener('DOMContentLoaded', function() {
-    refreshMaze();
+    resetGame();
 });
 
-function updateMaze(data) {
+// function to update the maze display
+function updateMaze() {
     const mazeElement = document.getElementById('maze');
     mazeElement.innerHTML = '';
 
@@ -14,13 +19,13 @@ function updateMaze(data) {
         const row = document.createElement('tr');
         for (let x = 0; x < WIDTH; x++) {
             const cell = document.createElement('td');
-            if (x === data.playerPos.x && y === data.playerPos.y) {
+            if (x === playerPos.x && y === playerPos.y) {
                 cell.classList.add('player');
                 cell.innerHTML = '⚽';
-            } else if (data.maze[y][x] === 'G') {
+            } else if (maze[y][x] === 'G') {
                 cell.classList.add('goal');
                 cell.innerHTML = '🥅';
-            } else if (data.maze[y][x] === 'X') {
+            } else if (maze[y][x] === 'X') {
                 cell.classList.add('obstacle');
                 cell.innerHTML = '❌';
             } else {
@@ -32,31 +37,28 @@ function updateMaze(data) {
     }
 }
 
-async function move(direction) {
-    const response = await fetch('maze.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: `move=${direction}`
-    });
-    const data = await response.json();
-    updateMaze(data);
-    if (data.solved) {
-        alert("Congratulations! You've reached the goal!");
-        refreshMaze();
+// move the player in the specified direction
+function move(direction) {
+    if (isValidMove(playerPos, direction, maze)) {
+        updatePosition(playerPos, direction);
+
+        // check if the goal has been reached
+        if (playerPos.x === WIDTH - 1 && playerPos.y === HEIGHT - 1) {
+            alert("Congratulations! You've reached the goal!");
+            resetGame();
+        } else {
+            updateMaze();
+        }
     }
 }
 
-function refreshMaze() {
-    fetch('maze.php?new_game=true')
-        .then(response => response.json())
-        .then(data => {
-            updateMaze(data);
-        });
+function resetGame() {
+    maze = generateMaze();
+    playerPos = new Position(0, 0);
+    updateMaze();
 }
 
-// Event listener for keydown events
+// when using keyboard buttons
 window.addEventListener('keydown', (event) => {
     switch (event.key) {
         case 'ArrowUp':
