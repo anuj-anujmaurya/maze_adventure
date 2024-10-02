@@ -50,12 +50,14 @@ table, td {
 
 button {
     margin: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
+    font-size: 25px;
     background-color: #4CAF50;
     color: white;
     border: none;
     cursor: pointer;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
 }
 
 button:hover {
