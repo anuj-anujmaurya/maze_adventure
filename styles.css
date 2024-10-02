@@ -11,20 +11,26 @@ h1 {
 }
 
 #maze {
-    margin: 20px auto;        /* Centers the table horizontally */
-    border-collapse: collapse; /* Ensures borders are collapsed into single borders */
-    display: inline-table;     /* Allows centering to work properly */
+    margin: 20px auto;
+    /* Centers the table horizontally */
+    border-collapse: collapse;
+    /* Ensures borders are collapsed into single borders */
+    display: inline-table;
+    /* Allows centering to work properly */
 }
 
 td {
     width: 40px;
     height: 40px;
     text-align: center;
-    line-height: 40px; /* Centers text vertically */
+    line-height: 40px;
+    /* Centers text vertically */
     border: 1px solid #ccc;
     padding: 10px;
 }
-table, td {
+
+table,
+td {
     border: 3px solid black;
 }
 
@@ -40,11 +46,14 @@ table, td {
 .obstacle {
     background-color: transparent;
     color: white;
-    font-size : 30px;
+    font-size: 30px;
     overflow: hidden;
+    text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000,
+        1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
 }
 
-.player, .goal {
+.player,
+.goal {
     font-size: 30px;
 }
 
@@ -63,6 +72,7 @@ button {
 button:hover {
     background-color: #45a049;
 }
+
 .btn-red {
     background-color: rgb(255, 103, 103);
 }

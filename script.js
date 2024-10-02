@@ -27,7 +27,7 @@ function updateMaze() {
                 cell.innerHTML = '🥅';
             } else if (maze[y][x] === 'X') {
                 cell.classList.add('obstacle');
-                cell.innerHTML = '❌';
+                cell.innerHTML = '👻';
             } else {
                 cell.innerHTML = '';
             }

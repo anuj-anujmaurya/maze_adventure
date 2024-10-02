@@ -52,12 +52,12 @@ function updatePosition(playerPos, move) {
 }
 
 function generateMaze() {
-    const maze = Array.from({ length: HEIGHT }, () => Array(WIDTH).fill(" "));
+    const maze = Array.from({ length: HEIGHT }, () => Array(WIDTH).fill(""));
 
     maze[0][0] = "S";
     maze[HEIGHT - 1][WIDTH - 1] = "G";
 
-    const numObstacles = Math.floor(Math.random() * 6) + 5; // obstacle is between 5-10
+    const numObstacles = Math.floor(Math.random() * 6) + 7; // obstacle is 7+
     for (let i = 0; i < numObstacles; i++) {
         const x = Math.floor(Math.random() * WIDTH);
         const y = Math.floor(Math.random() * HEIGHT);
