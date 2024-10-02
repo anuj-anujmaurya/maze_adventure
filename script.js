@@ -5,6 +5,14 @@ const HEIGHT = 5;
 let maze = [];
 let playerPos = new Position(0, 0);
 
+function resetGame() {
+    maze = generateMaze();
+    playerPos = new Position(0, 0);
+    // clear canvas
+    Clear();
+    updateMaze();
+}
+
 // initial maze rendering
 document.addEventListener('DOMContentLoaded', function() {
     resetGame();
@@ -24,6 +32,7 @@ function updateMaze() {
                 cell.innerHTML = '⚽';
             } else if (maze[y][x] === 'G') {
                 cell.classList.add('goal');
+                cell.setAttribute('id', 'goal');
                 cell.innerHTML = '🥅';
             } else if (maze[y][x] === 'X') {
                 cell.classList.add('obstacle');
@@ -37,6 +46,7 @@ function updateMaze() {
     }
 }
 
+const successSound = new Audio('/assets/success.mp3');
 // move the player in the specified direction
 function move(direction) {
     if (isValidMove(playerPos, direction, maze)) {
@@ -44,37 +54,40 @@ function move(direction) {
 
         // check if the goal has been reached
         if (playerPos.x === WIDTH - 1 && playerPos.y === HEIGHT - 1) {
-            alert("Congratulations! You've reached the goal!");
-            resetGame();
+            let goal_ele = document.getElementById('goal');
+            goal_ele.innerHTML = '';
+            let img_tag = document.createElement('img');
+            img_tag.setAttribute('src', '/assets/goal.gif');
+            img_tag.classList.add('goal_img');
+            goal_ele.appendChild(img_tag);
+
+            successSound.play(); 
+
+            Draw(100);
+
+            setTimeout(() => {
+                alert("Congratulations! You've reached the goal!");
+                resetGame();
+            }, 2000);
         } else {
             updateMaze();
         }
     }
 }
 
-function resetGame() {
-    maze = generateMaze();
-    playerPos = new Position(0, 0);
-    updateMaze();
-}
-
 // when using keyboard buttons
 window.addEventListener('keydown', (event) => {
     switch (event.key) {
         case 'ArrowUp':
-        case 'w':
             move('up');
             break;
         case 'ArrowDown':
-        case 's':
             move('down');
             break;
         case 'ArrowLeft':
-        case 'a':
             move('left');
             break;
         case 'ArrowRight':
-        case 'd':
             move('right');
             break;
         case 'q':

@@ -52,6 +52,13 @@ td {
         1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
 }
 
+.goal_img {
+    object-fit: cover;
+    width: 40px;
+    height: auto;
+    background-color: transparent;
+}
+
 .player,
 .goal {
     font-size: 30px;
@@ -85,4 +92,15 @@ button:hover {
     margin: 20px 0;
     font-size: 18px;
     color: #555;
+}
+
+/* confetti */
+
+canvas {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+    position: absolute;
+    left:0;
 }

@@ -105,5 +105,3 @@ function dfs(x, y, maze, visited) {
     // no path found
     return false;
 }
-
-resetGame();
