@@ -23,7 +23,7 @@ function isValidMove(playerPos, move, maze) {
             break;
     }
 
-    if (newPos.x < 0 || newPos.x >= WIDTH || newPos.y < 0 || newPos.y >= HEIGHT) {
+    if (newPos.x < 0 || newPos.x >= N || newPos.y < 0 || newPos.y >= N) {
         return false;
     }
 
@@ -52,16 +52,16 @@ function updatePosition(playerPos, move) {
 }
 
 function generateMaze() {
-    const maze = Array.from({ length: HEIGHT }, () => Array(WIDTH).fill(""));
+    const maze = Array.from({ length: N }, () => Array(N).fill(""));
 
     maze[0][0] = "S";
-    maze[HEIGHT - 1][WIDTH - 1] = "G";
+    maze[N - 1][N - 1] = "G";
 
     const numObstacles = Math.floor(Math.random() * 6) + 7; // obstacle is 7+
     for (let i = 0; i < numObstacles; i++) {
-        const x = Math.floor(Math.random() * WIDTH);
-        const y = Math.floor(Math.random() * HEIGHT);
-        if ((x === 0 && y === 0) || (x === WIDTH - 1 && y === HEIGHT - 1) || maze[y][x] === "X") {
+        const x = Math.floor(Math.random() * N);
+        const y = Math.floor(Math.random() * N);
+        if ((x === 0 && y === 0) || (x === N - 1 && y === N - 1) || maze[y][x] === "X") {
             continue;
         }
         maze[y][x] = "X";
@@ -76,20 +76,22 @@ function generateMaze() {
 }
 
 function isSolvableMaze(maze) {
-    const visited = Array.from({ length: HEIGHT }, () => Array(WIDTH).fill(false));
+    const visited = Array.from({ length: N }, () => Array(N).fill(false));
     return dfs(0, 0, maze, visited);
 }
+
+// TO-DO later (for higher complexity, reduce the number of paths, by adding more obstacles, or adding obstacles at optimum places ?)
 
 function dfs(x, y, maze, visited) {
     let directions = [
         { dx: 1, dy: 0 }, { dx: -1, dy: 0 }, { dx: 0, dy: 1 }, { dx: 0, dy: -1 }
     ];
 
-    if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT || maze[y][x] === "X" || visited[y][x]) {
+    if (x < 0 || x >= N || y < 0 || y >= N || maze[y][x] === "X" || visited[y][x]) {
         return false;
     }
 
-    if (x === WIDTH - 1 && y === HEIGHT - 1) {
+    if (x === N - 1 && y === N - 1) {
         return true;
     }
 

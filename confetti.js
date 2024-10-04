@@ -98,9 +98,7 @@ function Clear() {
     context.clearRect(0, 0, W, H);
 }
 
-window.addEventListener(
-    "resize",
-    function () {
+window.addEventListener("resize", function (){
         W = window.innerWidth;
         H = window.innerHeight;
         canvas.width = window.innerWidth;
