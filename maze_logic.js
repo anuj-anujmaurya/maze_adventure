@@ -57,7 +57,8 @@ function generateMaze() {
     maze[0][0] = "S";
     maze[N - 1][N - 1] = "G";
 
-    const numObstacles = Math.floor(Math.random() * 6) + 7; // obstacle is 7+
+    const numObstacles = getNumberOfBlockers(N);
+
     for (let i = 0; i < numObstacles; i++) {
         const x = Math.floor(Math.random() * N);
         const y = Math.floor(Math.random() * N);
@@ -97,13 +98,23 @@ function dfs(x, y, maze, visited) {
 
     visited[y][x] = true;
 
+    let total_paths = 0;
     // iterate over each direction
     for (const { dx, dy } of directions) {
-        if (dfs(x + dx, y + dy, maze, visited)) {
-            return true;
-        }
+        total_paths += dfs(x + dx, y + dy, maze, visited);
     }
 
-    // no path found
-    return false;
+    return total_paths;
+}
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function getNumberOfBlockers(N) {
+    const totalCells = N * N;
+    // atleast 50% and atmax 90% of cells are blockers
+    return getRandomInt(Math.ceil(totalCells * 0.5), Math.ceil(totalCells * 0.9));
 }
