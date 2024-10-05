@@ -1,22 +1,56 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to bottom right, #2b5876, #4e4376);
+    color: #fff;
     text-align: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+#game-container {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+}
+
+#content {
+    position: relative;
+    z-index: 10;
     padding: 20px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(8.5px);
+    -webkit-backdrop-filter: blur(8.5px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 h1 {
-    color: #4CAF50;
+    color: #ffe66d;
+    font-size: 3em;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#instructions {
+    margin: 20px 0;
+    font-size: 1.2em;
+    color: #f0f0f0;
+}
+
+.goal-icon, .obstacle-icon {
+    font-size: 1.5em;
 }
 
 #maze {
     margin: 20px auto;
-    /* Centers the table horizontally */
     border-collapse: collapse;
-    /* Ensures borders are collapsed into single borders */
     display: inline-table;
-    /* Allows centering to work properly */
 }
 
 td {
@@ -24,80 +58,102 @@ td {
     height: 40px;
     text-align: center;
     line-height: 40px;
-    /* Centers text vertically */
-    border: 1px solid #ccc;
-    padding: 10px;
+    border: 2px solid #333;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-table,
-td {
-    border: 3px solid black;
-}
-
-.player {
-    color: white;
-}
-
-.goal {
-    background-color: #44942c;
-    color: white;
-}
-
-.obstacle {
-    background-color: transparent;
-    color: white;
+td.player {
+    background-color: #ff4b5c;
+    color: #fff;
     font-size: 30px;
-    overflow: hidden;
-    text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000,
-        1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
+    animation: pulse 1s infinite;
+}
+
+td.goal {
+    background-color: #4CAF50;
+    color: #fff;
 }
 
 .goal_img {
-    object-fit: cover;
-    width: 40px;
-    height: auto;
-    background-color: transparent;
+    max-width: 40px;
+    max-height: 40px;
 }
 
-.player,
-.goal {
+td.obstacle {
+    background-color: transparent;
+    color: #ff1744;
     font-size: 30px;
+    text-shadow: 0 0 5px #000;
 }
 
 button {
-    margin: 5px;
-    font-size: 25px;
-    background-color: #4CAF50;
-    color: white;
+    margin: 10px;
+    font-size: 1.5em;
+    background-color: #ff8c42;
+    color: #fff;
     border: none;
     cursor: pointer;
     border-radius: 50%;
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
+    transition: transform 0.2s, background-color 0.2s;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #ff7b00;
+    transform: scale(1.1);
 }
 
-.btn-red {
-    background-color: rgb(255, 103, 103);
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-#instructions {
-    margin: 20px 0;
-    font-size: 18px;
-    color: #555;
+.horizontal-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
 }
 
-/* confetti */
+.control-button {
+    background-color: #ffa41b;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    width: 60px;
+    height: 60px;
+    font-size: 1.5em;
+}
+
+.control-button:hover {
+    background-color: #ff8c00;
+    transform: scale(1.1);
+}
 
 canvas {
-    overflow-y: hidden;
-    overflow-x: hidden;
+    overflow: hidden;
     width: 100%;
-    margin: 0;
+    height: 100%;
     position: absolute;
-    left:0;
+    top: 0;
+    left: 0;
     z-index: -1;
+}
+
+/* Confetti Animation (if applicable) */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
 }

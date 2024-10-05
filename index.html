@@ -5,23 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maze Adventure</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <canvas id="canvas"></canvas>
-    <h1>Maze Adventure</h1>
-    <div id="instructions">
-        <p>Navigate through the maze to reach the goal (🥅).</p>
-        <p>Make sure not to touch the boundary or blockers(💀).</p>
-        <p>You can move using given buttons OR arrow keys on keyboard to play the game.</p>
+    <div id="game-container">
+        <canvas id="canvas"></canvas>
+
+        <div id="content">
+            <h1>Maze Adventure</h1>
+
+            <div id="instructions">
+                <p>Navigate through the maze to reach the goal <span class="goal-icon">🥅</span>.</p>
+                <p>Avoid obstacles <span class="obstacle-icon">💀</span> and boundaries!</p>
+                <p>Use the arrow keys or the directional buttons below to move.</p>
+            </div>
+
+            <div class="table">
+                <table id="maze"></table>
+            </div>
+
+            <div class="controls">
+                <button onclick="move('up')" class="control-button"><i class="fas fa-arrow-up"></i></button>
+                <div class="horizontal-buttons">
+                    <button onclick="move('left')" class="control-button"><i class="fas fa-arrow-left"></i></button>
+                    <button onclick="move('down')" class="control-button"><i class="fas fa-arrow-down"></i></button>
+                    <button onclick="move('right')" class="control-button"><i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+        </div>
 
     </div>
-    <div class="table">
-        <table id="maze"></table>
-    </div>
-    <button onclick="move('up')">⬆</button>
-    <button onclick="move('down')">⬇</button>
-    <button onclick="move('left')">⬅</button>
-    <button onclick="move('right')">➡</button>
 </body>
 <script src="maze_logic.js"></script>
 <script src="confetti.js"></script>
