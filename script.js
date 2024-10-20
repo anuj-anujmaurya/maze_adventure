@@ -2,7 +2,7 @@ let MAX_SIZE = 10;
 let N = 3;
 
 // detect if it's mobile, limit max grid size to 6
-const isMobile = navigator.userAgentData.mobile;
+const isMobile = false;// navigator.userAgentData.mobile;
 if (isMobile) {
     MAX_SIZE = 6;
 }
